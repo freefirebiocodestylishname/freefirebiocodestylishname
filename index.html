@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Free Fire Bio Code & Stylish Name</title>
+
+<style>
+body{font-family:sans-serif;text-align:center;background:#f5f6fa}
+.section{display:none;padding:20px}
+.active{display:block}
+
+button{padding:15px;margin:10px;cursor:pointer}
+button.activeBtn{
+background:#2196F3;
+color:white;
+box-shadow:0 0 2px #2196F3, 0 0 2px #2196F3;
+}
+input{
+width:80%;
+max-width:500px;
+padding:15px;
+font-size:20px;
+border-radius:10px;
+border:2px solid #2196F3;
+outline:none;
+margin:15px 0;
+text-align:center;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}.titleBox{
+background:white;
+padding:15px;
+margin:15px auto;
+width:80%;
+max-width:400px;
+border-radius:12px;
+font-size:24px;
+font-weight:bold;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}.owner{
+font-size:14px;
+color:#555;
+display:block;
+margin-top:5px;
+}
+
+input:focus{
+border-color:#ff4500;
+box-shadow:0 0 10px rgba(255,69,0,0.3);
+}
+
+.box{
+background:white;
+padding:12px;
+margin:5px;
+border-radius:8px;
+cursor:pointer;
+display:inline-block;
+}
+
+.box:hover{background:#2196F3;color:#fff}
+
+.grid{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+justify-content:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="titleBox">
+Free Fire Bio Code & Stylish Name<br>
+<span class="owner">By BSS ARMY</span>
+</div>
+
+<button class="activeBtn" onclick="show('bio')">Bio</button>
+<button onclick="show('symbols')">Symbols</button>
+<button onclick="show('fonts')">Fonts</button>
+<button onclick="show('names')">Names</button>
+<button onclick="show('colors')">Colors</button>
+
+<!-- BIO -->
+<div id="bio" class="section active">
+<h2>Bio Codes</h2>
+<input id="search" placeholder="Search">
+<button onclick="filterBio()">Search</button>
+<div id="bioBox"></div>
+</div>
+
+<!-- SYMBOL -->
+<div id="symbols" class="section">
+<h2>Symbols</h2>
+<div id="symbolBox" class="grid"></div>
+</div>
+
+<!-- FONTS -->
+<div id="fonts" class="section">
+<h2>Fonts</h2>
+
+<input id="fontInput" placeholder="Type text here">
+
+<div id="fontBox" class="grid"></div>
+
+</div>
+
+<!-- NAMES -->
+<div id="names" class="section">
+<h2>Names</h2>
+<div id="nameBox" class="grid"></div>
+</div>
+
+<!-- COLORS -->
+<div id="colors" class="section">
+<h2>Colors</h2>
+<div id="colorBox" class="grid"></div>
+</div>
+
+<script>
+
+// TAB SWITCH
+function show(id){
+
+document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
+document.getElementById(id).classList.add('active')
+
+document.querySelectorAll('button').forEach(b=>b.classList.remove('activeBtn'))
+
+event.target.classList.add('activeBtn')
+}
+//Copy Text 
+function copy(text){
+  navigator.clipboard.writeText(text)
+}
+
+// BIO DATA
+const bios = [
+`[B][C][fffd00] __◢▓▓▓▓▓▓▓▓  
+◤ ◢◤'╯★M1887‿ KING`,
+
+`[b][c]╭─╮  
+︱◯֯︱★ɪɴꜱᴛᴀ★YT┊[ff0037] BSS ARMY  
+╰─╯`,
+
+`[b][c]╭─╮  
+︱◯֯︱★ɪɴꜱᴛᴀ★YT┊[ff0262] BSS ARMY  
+╰─5k`,
+
+`[B][C]╱◥██████◣  
+[00f0f0]│∩│▤│▤│▤  
+▓▓▓▓▓▓▓▓▓`,
+
+`[FF01F1]█ █▀▀  
+[FCFF11]█ █▄█[b][00feff] Bssarmyff`,
+
+`[FFA500] █████  
+[FFFFFF] ██☸██ INDIA  
+[00FF00] █████`,
+
+`[B][C][00FFFF]╭─╮  
+︱ ꚠ ︱тιктσк ┆BSS Army  
+╰─╯`,
+
+`[b][c][FF0000]✿  
+[00FF00]᭄[00FF00]⸙  I ❤️ YOU`,
+
+`[FF0000]  ✿*●❤️●    ❀✿❀  
+[00FF00]༆࿔/▓/▓\\☆ \\ Į /❤️  
+Couple`,
+
+`[b][c][FFFFFF]ME ဗီူ╯[Ff0200]❤ [00FF00]╰ဗီူYOU`,
+
+`[b][c]ᴍყ Ꮋᴇꫝᴛ Ᏸᴇꫝᴛ[b][c][FF0000]❤ [00FFFF]Ɱ๏ᴍ Ꭰꫝᴅ`,
+
+`[b][c][FF00FF]┏╮\\ /╱✿ ፝֟፝  
+╰♡✿[00FFFF] PAGAL❤️ LOVE`,
+
+`[c][00FF00]       ●  IND VS PAK  
+█\\  
+▄█﹅▃█▀█●`,
+
+`[B][C][FFD3EF]✿ NEHA  ✿  
+[B][C][00FF00]᭄⸙ ROHIT  ᭄⸙`,
+
+`[b][c]╰╮╭╯  
+[18ff1c]    ⳻፝֟͜⳺ [00ffff]PAGAL DIL`,
+
+`[B][C]╭─╮  
+︱☎︎︱ BSS ┆[FF00FF] Army  
+╰─╯`,
+
+`[B][00FFFF]╭─╮  
+︱☎︎︱ BSS ┆[CCFF00] Army`,
+
+`[B][C][00FFFF]╭─╮  
+︱ ꚠ ︱тιктσк ┆bss army  
+╰─╯`,
+
+`[B][00FFFF]╭──╮  
+|     ▶︎    |  ʏ ᴛ ┊  
+╰──`,
+
+`[B][C][00FF00]ㅤ|×͜×|ㅤㅤㅤㅤ  
+/█/ [B][00ffff]Pro  
+BSS ARMY:`,
+
+`[c][Ffff00]☁  ●     ●ㅤ☁  
+☁/█/▓\\ ☁ Pagla ♥️Pagali`,
+
+`[FFB900][b] ㅤ✿ ㅤ  ♬ ㅤ  ☯︎ [/b][c]  
+999ㅤ999ㅤ999`,
+
+`[b][c][ffd700]   ＦＲＥＥ  ＦＩＲＥ  
+██◣ MAX ◢██`,
+
+`[b][c]╭─╮  
+︱ⓕ︱Faceßook┊[33FFB5]  BSS ARMY  
+╰─╯`,
+
+`[B][CCFF00]      ●  FF LE PUBG  
+█\\  
+▄█﹅●█▀█▄`,
+
+`[b][6D7b8b]ᝰ[ffffff]▄▄▄▄▄▄[ffa000]▄▄▄`,
+
+`[B][00FFFF]╬═╬ ☺️/  
+╬═╬ /▌SUCCESS  
+[00FF7F]╬═╬ / \\`,
+
+`[B][C][FF0000]ᯤ 9 9 9 + [B][C][00FF00] BSS ARMY`
+]
+
+function loadBio(list){
+let box=document.getElementById("bioBox")
+box.innerHTML=""
+list.forEach(b=>{
+let d=document.createElement("div")
+d.className="box"
+d.innerText=b
+d.onclick=()=>copy(b)
+box.appendChild(d)
+})
+}
+loadBio(bios)
+
+function filterBio(){
+let q=document.getElementById("search").value.toLowerCase()
+loadBio(bios.filter(x=>x.toLowerCase().includes(q)))
+}
+
+// SYMBOLS
+const symbols=["Ⓥ","ཧོ","᭄","ꪇ༊","❖","❦","⸙","⳻፝֟͜⳺","༒","ᯤ⁹⁹⁹⁺","᭄","♡֟፝","ᜰ꙰ꦿ","❁","✿","⚚","☠","꧁","꧂","༺","༻","▪","ꪇ","༊","๖","࿐","—͟͞͞★","ϟ","ꨄ","დ","ꔪ","ᴺᴳ┊","☕","ᖫᖭ","☬","᭄","ᬊᬁ","ᬊ᭄","୧୨","❖","♡᭄ꦿ","ぷ","ᯓ","༗","ᯓ","ᵖᶜ","모","Ѽ","ѽ","Ѿ","🝪","Ꮤ","⨈","Ѯ","ㆅ","ѯ","Ѱ","ជ","〃","ဗ","﹅","﹆","Ⓥ","♥︎","❥","❦","❧","☙","♠","§","»","❣","❢","ᰔ","ᰔᩚ","ෆ","ʚ","ɞ","დ","ლ","এ","ঞ","ଓᜊ","ꨄ","ஐ","ᦗ","␌","⸙","♠","◉","๏","☯","㋡","㊜","★","☢","㉿","〄","࿃","࿊","♋","࿋","𖣐","࿌","ꪶ࿋྄ིᤢꫂ","ꪶ☯ꫂ","࿗","ʕ˖͜͡˖ʔ","ʕ•ᴥ•ʔ","憶","⎋","࿀","ܔ","֟፝","ꤪꤨꤪ","ꨄꤪꤨ","♚","⳻᷼⳺","⳻፝֟͜⳺","࿅","ꗃ","豈","高",":)","𖤍","𐇲","ꗈ","♪","෴","☎","☂","☔","™","ꙮ","⚓","☸","♨","༆","〲","◣◥","◇","☁","╰","╯","╰╮╭╯","╰‿╯","᭓","戀","♔","⛄","☃️","⚡","֟፝","֟","〠","♝","࿈","࿂","♻️","♻","༕","圓","❔","❓","﷽","ܫ","ོꪾ","ʚiɞ","ʚɞ","ʚĭɞ","乡","乂","乄","メ","火","米","✿᭄ꦿ","么","⺓","ツ","༒","♛","×֟፝᷼×","⳻֟፝᷼⳺","⳻‿⳺","⳻‿ꤪꤨꤪ⳺","⳻࿈⳺","⳻ ֟፝᷼ ⳺","ᯤ⁹⁹⁹⁺","⟬⟭","⟁","⛈","⛇","⛏","⛆","⚱","▩","⑇","␥","⏦","⏧","⏣","⎎","⎗","⃠","᳀","᳂","ᱪ","ᰄ","᪣","ཥཤ","࿗","࿃","༨","ᦿ","ᦹ","ⵕ","ⵚ","Ⱉ","⭖","✌︎","ﮩ٨ـﮩﮩ٨ـ","ﮩ٨ـﮩﮩ","♘","⚯","×᷼×","⩀","๛","ム","⟴","亗","帝","▪×֟፝͜×▪","⨳","◎","❐","❏","⚠","⛩","⛱","⛶","⌤","☰","♩","┆","┇","╎","╏","║","╽","▏","▎","▕","⑆","⎇","⌥","⌔","⚠️","ᴮᴼˢˢ","ᶠᶠ","⁹⁹","４４４","㊊","㊋","㊌","㊍","㊎","㊏","㊐","㊑","㊒","㊓","㊔","㊕","㊖","㊗","㊘","㊙","㊚","㊛","㊜","㊝","㊞","㊟","㊠","㊡","㊢","㊣","㊤","㊥","㊦","㊧","㊨","㊩","㊪","㊫","㊬","㊭","㊮","㊰","͟͟͞͞★","⏤͟͟͞͞★","⚠","ᥫ᭡","ꪶꫂ","❖","冬","々","么","メ","〆","✿","⦄","⟦","⟧","⟨","⟩","⟪","⟫","「","」","【","】","〔","〕","⦗","⦘","『","』","〖","〗","〘","〙","❛❜","❝","❞","❨","❩","❪","❫","❴","❵","❬","❭","❮","❯","❰","❱","❲","❳","﴾","﴿","﹝","﹞","⏠","⏡","︵","︶","⸨","⸩","⟅","⟆","͢","🎵","♩","♪","♫","♬","🎼","🎵","🎶","🎧","📻","🎷","🎸","🎹","🎺","🎻","░","▒","▊","♡᭄ꦿ","❤","💓","💕","💒","🏩","💖","💗","💞","💟","💙","💚","💛","💜","💘","💔","💝","♡","♥","❥","❦","☙","🖤","ꨄ","😍","💋","░","▒","▓","▢","▣","⎚","⎔","⌒","⌵","⌾","⍟","⌢","⌖","⌭","ꐠ","ꐡ","ꐕ","ꌇ","ꌈ","ꉕ","ꆛ","ꆜ","⚖","卐","⚶","⚠","⎚\࿈/⎚","⎚\⌣/⎚","⎚\⌣/⎚","⎚/⎚","⟬᳂⌣᳂⟭","◉‿◉","❀","᭄ꦿ","❀","❁","❃","✿","✾","⚜","⚘","☘","✥","✤","ꕥ","✣","❇","❈","❉","❊","❋","✽","✼","✻","ꕤ","ꕥ","᪥","ꙮ","𓇋","𓁙","𓆹","𓇑","𓇊","𓇬","𓆱","𓋇","𓇗","𓇚","𓆸","𓇣","֎","𓆭","𓆰","𓁋","𓆼","𓇕","𓇛","🌸","🌺","🌻","🌼","🍀","💮","💐","🌹","🌷","♡","♥","❥","ღ","❀","❦","ツ","ℳ","→","۵","༄","❝","ッ","♋︎","❞","✧","❁","『","』","»","✿","𖥸","✰","❤","ϟ","♈︎","♒︎","⚘","━","†","★","♛","☼","♏︎","☆","♊︎","❣","シ","☽","➳","↳","♌︎","♓︎","║","》","♱","ℰ","〄","❧","ヅ","⋆","ℒ","☾","«","⤷","₂","─","✞","♪","」","➥","¹","²","♉︎","♎︎","│","【","ꃼ","✩","⭑","ℯ","↓","「","♍︎","†","ℋ","↑","₁","◦","╔","〔","☙","✞","♫","✮","ℬ","↬","↺","ᴬ","《","〘","✦","✉","™","➤","⇝","[x]","♐︎","ȵ","☣","☻","⭒","✆","☏","♕","♦","ℐ","➠","➺","↴","₄","Ⓐ","♑︎","❛","✵","ლ","♚","☞","❃","ꕥ","←","₀","Ⓒ","Ⓔ","╰","】","☺","〤","ℛ","✺","↠","⤿","〖","═","┃","╱","☠","♒","⁰","〗","〙","☹","✭","♔","ꕤ","✓","◌","₃","⫸","⫷","➢","☆","☁","◜","ᴱ","ᴸ","꧂","╭","❜","↝","➫","❆","ℭ","℘","ℴ","㋡","Ⓚ","Ⓢ","◝","♏","꧂","☯","꙳","☪","☭","♬","›","〆","❖","✎","♠","♥","ℱ","☂","➵","➼","𝄟⃝","₅","Ⓝ","∞","◞","┗","╚","ᴵ","ᴷ","[x]","⋆","✢","✣","✤","✥","❋","✦","✧","✩","╰☆╮","✪","★","✰","✯","✮","✭","✬","✫","✱","✲","❂","✵","✶","✷","✸","❈","❆","❅","✼","✻","✺","✹","❉","❊","⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹","₀","₁","₂","₃","₄","₅","₆","₇","₈","₉","✓.","√","☐","☒","✇","✗","✘","✕","☓","╳","▲","▼","◄","►","◣","◢","◥","▼","◤","◥","▴","▾","◂","▸","△","▽","◁","▷","⊿","▻","◅","▵","▹","◃","▿","⟁","⧋","⎊","❝","❞","«","»","‟","‹","›","⟨","⟩","„","′","‵","‘"]
+symbols.forEach(s=>{
+let d=document.createElement("div")
+d.className="box"
+d.innerText=s
+d.onclick=()=>copy(s)
+symbolBox.appendChild(d)
+})
+
+// FONTS SYSTEM: EACH LETTER COPYABLE
+const fonts = [
+  ["𝙰","𝙱","𝙲","𝙳","𝙴","𝙵","𝙶","𝙷","𝙸","𝙹","𝙺","𝙻","𝙼","𝙽","𝙾","𝙿","𝚀","𝚁","𝚂","𝚃","𝚄","𝚅","𝚆","𝚇","𝚈","𝚉"], // existing
+  ["Ꭺ","Ᏼ","Ꮯ","Ꭰ","Ꭼ","Ꮁ̵","Ꮹ","Ꮋ","Ꮠ","Ꮣ","Ꮰ","Ꮶ","Ꮮ","Ꮇ","ℕ","Ꮻ","Ꭷ","Ꮲ","ℚ","Ꭱ","Ꮥ","Ꭶ","Ꭲ","Ꮜ","Ꮴ","Ꮤ"], // existing
+  ["ᴀ","ʙ","ᴄ","ᴅ","ᴇ","ғ","ɢ","ʜ","ɪ","ᴊ","ᴋ","ʟ","ᴍ","ɴ","ᴏ","ᴘ","ǫ","ʀ","s","ᴛ","ᴜ","ᴠ","ᴡ","x","ʏ","ᴢ"], // existing
+
+  // NEW FONT 4
+  ["ᗩ","ᗷ","ᑕ","ᗪ","ᗴ","ᖴ","ᘜ","ᕼ","I","ᒍ","K","ᒪ","ᗰ","ᑎ","O","ᑭ","ᑫ","ᖇ","Տ","T","ᑌ","ᐯ","ᗯ","᙭","Y","ᘔ"],
+
+  // NEW FONT 5
+  ["🅰︎","🅱︎","🅲︎","🅳︎","🅴︎","🅵︎","🅶︎","🅷︎","🅸︎","🅹︎","🅺︎","🅻︎","🅼︎","🅽︎","🅾︎","🅿︎","🆀︎","🆁︎","🆂︎","🆃︎","🆄︎","🆅︎","🆆︎","🆇︎","🆈︎","🆉︎"],
+
+  // NEW FONT 6
+  ["ᵃ","ᵇ","ᶜ","ᵈ","ᵉ","ᶠ","ᵍ","ʰ","ⁱ","ʲ","ᵏ","ˡ","ᵐ","ⁿ","ᵒ","ᵖ","ᵠ","ʳ","ˢ","ᵗ","ᵘ","ᵛ","ʷ","ˣ","ʸ","ᶻ"],
+
+  // NEW FONT 7
+  ["Ⓠ︎","Ⓦ︎","Ⓔ︎","Ⓡ︎","Ⓣ︎","Ⓨ︎","Ⓤ︎","Ⓘ︎","Ⓞ︎","Ⓟ︎","Ⓐ︎","Ⓢ︎","Ⓓ︎","Ⓕ︎","Ⓖ︎","Ⓗ︎","Ⓙ︎","Ⓚ︎","Ⓛ︎","Ⓩ︎","Ⓧ︎","Ⓒ︎","Ⓥ︎","Ⓑ︎","Ⓝ︎","Ⓜ︎"],
+
+  // NEW FONT 8
+  ["q̑̈","w̑̈","ȇ̈","ȓ̈","t̑̈","y̑̈","ȗ̈","ȋ̈","ȏ̈","p̑̈","ȃ̈","s̑̈","d̑̈","f̑̈","g̑̈","h̑̈","j̑̈","k̑̈","l̑̈","z̑̈","x̑̈","c̑̈","v̑̈","b̑̈","n̑̈","m̑̈"],
+
+  // NEW FONT 9
+  ["A","B","C","Ð","Σ","F","G","H","I","J","K","L","M","N","O","P","Q","Я","S","T","U","V","W","X","Y","Z"],
+
+  // NEW FONT 10
+  ["A","Ɓ","Ƈ","Ɗ","Ɛ","Ƒ","Ɠ","H","I","J","Ƙ","L","M","Ɲ","O","Ƥ","Q","R","S","Ƭ","U","Ʋ","Ɯ","X","Ƴ","Ƶ"] 
+];
+
+// Convert a single character to a font
+function convertChar(char, fontSet){
+    let index = char.toUpperCase().charCodeAt(0) - 65;
+    if(index >= 0 && index < 26){
+        return fontSet[index];
+    } else {
+        return char; // non A-Z characters stay the same
+    }
+}
+
+// Load fonts letter by letter
+function loadFonts(){
+    let text = document.getElementById("fontInput").value || "FREE FIRE";
+    fontBox.innerHTML = "";
+
+    fonts.forEach(fset => {
+        // create a row for this font style
+        let row = document.createElement("div");
+        row.style.display = "flex";
+        row.style.justifyContent = "center";
+        row.style.flexWrap = "wrap";
+        row.style.marginBottom = "10px";
+
+        for(let char of text){
+            let converted = convertChar(char, fset);
+            let d = document.createElement("div");
+            d.className = "box";
+            d.innerText = converted;
+            d.style.margin = "3px";
+            d.onclick = () => copy(converted);
+            row.appendChild(d);
+        }
+
+        fontBox.appendChild(row);
+    });
+}
+
+document.getElementById("fontInput").addEventListener("input", loadFonts);
+loadFonts();
+
+// NAMES
+// Add custom names to Name Box
+const customNames = [
+"ƁSSㅤARMƳ",
+"BSSㅤARMY 1Mㅤ",
+"BSSㅤQUEENㅤꨄ︎",
+"BAAZIGAR ×͜×",
+"꧁QUEEN FF ꧂",
+"ᶜᵘᵗᵉ SANA ʚĭɞ",
+"ᴍ ᴀ ᴅ ᴀ ʀ ᴀシ︎",
+"✿ ┊ʏᴜᴍɪꨄ︎",
+"『ᴮᵀᴷ』ᴺᵃʳᵘᵗᵒ࿐",
+"༒︎シ︎Darlingシ︎༒︎",
+"ᴀᴋᴀsʜɪシ︎",
+"ȺᎫ᭄ᴋ ᴀ ɴ ᴇ ᴋ ɪ☂⁰²",
+"乂 D R A K E Nツ 乂",
+"𖣘~Kᴀкᴀѕнi~𖣘",
+"𝙼 𝙸 𝙽 𝙰 𝚃 𝙾を",
+"S a s u k e",
+"✔︎シ︎Mɪɢʏᴍɪɴ♡︎✔︎",
+"✞︎𝚂𝚑𝚒𝚜𝚞𝚒𖣘",
+"꧁༄Nᴀʀᴜᴛᴏ༄꧂",
+"꧁Zetsu꧂",
+"—͟͞͞★ʏᴜᴋɪɴᴀ",
+"◣Mitsuki◥",
+"ᴺˣᵀ〆Pᴀɪɴꔪ",
+"☁︎︎•*ᴢᴇʀᴏ ᴛᴡᴏ*•",
+"❦ʜᴀɴᴀᴋᴏ ᴋᴜɴ❦♀",
+"𝙽𝚎𝚣𝚞𝚔𝚘 ❦",
+"✿ ┊ Hɪ፝֟ɴᴀ ʚĭɞ",
+"あ┋ꜱᴀʙɪᴛᴏ ღ",
+"sᴇɴᴘᴀɪ_ɢɪʀʟ ❦",
+"ˡᵃ 𝙾 𝚃 𝙰 𝙺 𝚄 ツ",
+"メ²⁴·sᴇɴᴘᴀɪ✿",
+"N e z u k o",
+"﷼L U F F Yメ",
+"【мƒ】•мιкαѕαツ",
+"Aʟʟᴜᴋᴀ ヅ",
+"☆ J I R 么 I Y A ☆",
+"♕︎•|ɪɴᴜʏᴀsʜᴀシ",
+"✞︎𝚈 𝚄 𝙼 𝙴 𝙺 𝙾シ︎",
+"✧ 𝚂𝚊𝚔𝚞𝚛𝚊 ✧",
+"Yᴏshi シ︎",
+"ᴍɪᴛsᴜᴋɪ",
+"Aιzᥱn࿐",
+"ＭＡＤＡＲＡ〆ズ",
+"✿┋NEZUKOᰔ",
+"ㄠ ʜɪɴ፝֟ᴀᴛᴀ → ♀",
+"S ʜ ᴀ ɴ ᴋ s⛄",
+"Zxɪɴɴɴ",
+"◤Ꭼʀᴇɴ◢ㅤᶠᶠ",
+"✔︎ᴀɴɪᴍᴇ ʟɪғᴇシ︎",
+"Ꮮᴏʀᴅ Ɲᴀɢᴀᴛᴏ",
+"ᴀ ᴛ ᴛ ɪ ᴛ ᴜ ᴅ ᴇ᭄ ʙ ᴏ ʏㅤ×͜×",
+"Sɪͥɴͣɢͫʟᴇ‿ʙᴏʏ ×͜×",
+"࿇ᎷᎡ.ᎪᏞϴΝᎬ࿇",
+"Ꭰꫝɴɢᴇʀ メ Ꮓᴏɴㅤ모",
+"༆ᎬꪜᎥᏝꦿ★乂Sᴛʀɪᴋᴇ",
+"★彡[ᴅᴇᴀᴅ ᴋɪʟʟᴇʀ]彡★",
+"Rᴏʏᴀʟˣ Bᴏʏ",
+"ᴀᴛᴛɪᴛᴜᴅᴇ᭄ʙᴏʏ",
+"ᶜᴿᴬᶻᵞ╰‿╯ㅤʙ ᴏ ʏ 亗",
+"◥꧁དDevilツDadཌ꧂◤",
+"ᵀᴳᴿ〆ꔪᴅᴇᴀᴅ ᴋɪʟʟᴇʀ〆ꔪ",
+"メ Dᴇᴀᴅ Ꮓᴏɴeㅤ모",
+"Ziddi Sehzada",
+"×͜×MR TOM ⓿❸",
+"ᴵᴬᴹ⚔★M a r o o f ⚔⁰⁰⁷",
+"Ɗ𝙴ꫝᴅ Ꮓᴏɴ𝙴 シ",
+"– ×͜× ᴄ͢͢͢ʀɪᴍɪɴᴀʟ",
+"F L A X Y 모",
+"𒆜Lions King𒆜",
+"NINJA╰‿╯ZEROX",
+"ᏚᴋʏㅤᏞᴏʀᴅ!ꔪ",
+"ᏚᴋʏㅤＤᴀɴтᴇ!ꔪ",
+"Aʟᴘʜᴀ Gʀᴇʏ !",
+"𝙳𝙰𝙴𝙳ㅤ𝚉𝙾𝙽ㅤ1𝙼",
+"☆ᴍᴀꜰɪᴀ AK47☆",
+"FʀᴇᴇㅤSᴛʏʟᴇ 1 Mᅠ모",
+"╰‿╯ㅤᑌᴍᴩ ʟᴏᴠᴇʀ",
+"ƊȤƦㅤAƬÌƘㅤ444",
+"ᴄ͢͢͢ʀɪᴍɪɴᴀʟ",
+"ᶜᴿᴬᶻᵞ╰‿╯AHMAD 亗",
+"ᴬᴷ°᭄ʜᴇʀᴏ࿐",
+"♡ᴹᶜ༺J㋡KᎬᎡ࿐ⓎⓉ",
+];
+
+customNames.forEach(name => {
+  let div = document.createElement("div");
+  div.className = "box";
+  div.innerText = name;
+  div.onclick = () => navigator.clipboard.writeText(name); // Copy text on click
+  nameBox.appendChild(div);
+});
+
+// COLORS (1000)
+for(let i=0;i<1000;i++){
+let c="#"+Math.floor(Math.random()*16777215).toString(16).padStart(6,'0')
+let d=document.createElement("div")
+d.className="box"
+d.style.background=c
+d.innerText="["+c+"]"
+d.onclick=()=>copy("["+c+"]")
+colorBox.appendChild(d)
+}// SUBSCRIBE POPUP (ONCE)
+window.onload = function(){
+
+if(!localStorage.getItem("subscribed")){
+
+setTimeout(()=>{
+let go = confirm(" Subscribe to my YouTube channel to continue!");
+
+if(go){
+window.location.href = "https://www.youtube.com/@Bssarmyff";
+}
+
+localStorage.setItem("subscribed","yes")
+
+},1000)
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
